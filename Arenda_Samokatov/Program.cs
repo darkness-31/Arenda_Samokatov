@@ -26,7 +26,7 @@ internal class Program
         }
 
         bool checkedWhile = true;
-        do
+        while (checkedWhile)
         {
             Console.Clear();
             Console.WriteLine("1. Добавить клиентов");
@@ -47,8 +47,7 @@ internal class Program
             Console.Write("Действие: ");
 
             string? actionRead = Console.ReadLine();
-            if (actionRead == null ||
-                actionRead == string.Empty)
+            if (string.IsNullOrEmpty(actionRead))
                 continue;
 
             var action = actionRead.Parse<int>();
@@ -87,7 +86,7 @@ internal class Program
                 case 9:
                     break;
             }
-        } while (checkedWhile);
+        }
     }
 
     private static Permission Authorization()
