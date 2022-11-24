@@ -1,5 +1,7 @@
-﻿using System.Data.SqlTypes;
+﻿using LiteDB;
 using System.Text;
+using System.Data.Common;
+using LiteDB;
 
 namespace Arenda_Samokatov;
 
@@ -11,40 +13,12 @@ enum Permission
 
 internal static class Until
 {
-    private static string connectionDB = "Data Source=Source.db";
-    private static SqliteConnection DB = new SqliteConnection(connectionDB);
+    private static string connectionDB = "Source.db";
+    private static LiteDatabase DB = new LiteDatabase(connectionDB);
 
-    internal static void SQLNonQuery(this string sql)
+    internal static void Query<T>(this List<T> list)
     {
-        DB.Open();
-        SqliteCommand command = DB.CreateCommand();
-        command.CommandText = sql;
-        command.ExecuteNonQuery();
-        DB.Close();
-    }
-    internal static List<T> SQLQueryAsList<T>(this string sql)
-    {
-        var list = new List<T>();
 
-        if (sql == string.Empty)
-            return list;
-
-        DB.Open();
-        SqliteCommand command = DB.CreateCommand();
-        command.CommandText = sql;
-        SqliteDataReader reader = command.ExecuteReader();
-
-        if (reader.HasRows)
-        {
-            while (reader.Read())
-            {
-                for (int i = 0; i < reader.FieldCount; i++)
-                    list.Add(reader[i].ToString().Parse<T>());
-            }
-        }
-        DB.Close();
-
-        return list;
     }
 
     internal static T? Parse<T>(this string? value)
