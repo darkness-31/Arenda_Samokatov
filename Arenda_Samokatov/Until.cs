@@ -13,13 +13,8 @@ enum Permission
 
 internal static class Until
 {
-    private static string connectionDB = "Source.db";
-    private static LiteDatabase DB = new LiteDatabase(connectionDB);
-
-    internal static void Query<T>(this List<T> list)
-    {
-
-    }
+    private static LiteDatabase DB = new LiteDatabase("Source.db");
+    internal static ILiteCollection<T> QueryCollection<T>(this List<T> list, string Column) => DB.GetCollection<T>(Column);
 
     internal static T? Parse<T>(this string? value)
     {
