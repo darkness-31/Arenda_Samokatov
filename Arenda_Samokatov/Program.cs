@@ -13,13 +13,17 @@ internal class Program
     public static string LoginName = string.Empty;
     private static bool SuperUser = false;
 
-    public static void Main(string[] args)
+    public static void InsertData()
     {
         UsersExecution.table.DeleteAll();
         UsersExecution.table.Insert(ObjectId.NewObjectId(), new Users("Admin", "admin123", 1));
         UsersExecution.table.Insert(ObjectId.NewObjectId(), new Users("User", "user1234", 2));
+    }
 
-        var temp = UsersExecution.table.FindAll().ToList() ?? null;
+    public static void Main(string[] args)
+    {
+        InsertData();
+
         switch (UsersExecution.Auntification())
         {
             case Permission.Admin:

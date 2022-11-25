@@ -11,7 +11,7 @@ namespace Arenda_Samokatov.Data
 {
     internal class UsersExecution
     {
-        public static ILiteCollection<Users> table = new List<Users>(){}.QueryCollection("Users");
+        public static ILiteCollection<Users> table = new List<Users>() {}.QueryCollection("Users");
         public static string Login = string.Empty;
         public static Permission Auntification()
         {
@@ -28,7 +28,7 @@ namespace Arenda_Samokatov.Data
                 try
                 {
                     list = table.Find(x => x.Password == password &&
-                                              x.Login == login).ToList();
+                                           x.Login == login).ToList();
 
                     if (list.Count == 0)
                         throw new Exception("Неправильный логин и пароль");

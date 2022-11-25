@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Arenda_Samokatov.Data
 {
-    public class Users
+    public class User
     {
-        internal Users(string? Login, string? Password, int AccessID)
+        internal User(string? Login, string? Password, int AccessID)
         {
             this.Login = Login;
             this.Password = Password;
